@@ -1,0 +1,44 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>TFFL Data Manager</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">TFFL</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/teams/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Teams
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class = "dropdown-item" href="/teams/Team/1">Wahzoo Yoots</a>
+            <a class = "dropdown-item" href="/teams/Team/2">Hooper Bay Hintomas</a>
+            <a class = "dropdown-item" href="/teams/Team/3">Bayside Baconlovers</a>
+            <a class = "dropdown-item" href="/teams/Team/4">Brooklyn Guidos</a>
+            <a class = "dropdown-item" href="/teams/Team/5">King Harbor KOCs</a>
+            <a class = "dropdown-item" href="/teams/Team/6">The Other Ones</a>
+            <a class = "dropdown-item" href="/teams/Team/7">Carol City Hustlas</a>
+            <a class = "dropdown-item" href="/teams/Team/8">Headington FC</a>
+            <a class = "dropdown-item" href="/teams/Team/9">Carnoustie 'Cannons</a>
+            <a class = "dropdown-item" href="/teams/Team/10">CT Laces Out Dan</a>
+            <a class = "dropdown-item" href="/teams/Team/11">DC Legacy</a>
+            <a class = "dropdown-item" href="/teams/Team/12">Boston Fog</a>
+
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% block content %}{% endblock content %}
+</body>

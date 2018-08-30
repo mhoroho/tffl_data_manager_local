@@ -1,0 +1,159 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+-->
+{% extends "team_admin/base.html" %}
+
+{% block content %}
+
+
+<div class="container-fluid ">
+
+    <div class="row">
+        {% if request.user.is_superuser %}
+        <div class="col">
+            <form action = "/teams/add_player/{{x}}/" method="POST">
+                {% csrf_token %}
+                <h2> Add Player </h2>
+                    <select name="player">
+                        {% for u in u %}
+                            <option id= "player" value="{{u.player_id}}">{{u.first_name}} {{u.last_name}}</option>
+                        {% endfor %}
+                    </select>
+                <input type="submit" value="Add Player">
+            </form>
+            <form action = "/teams/reassign_pick/{{x}}/" method="post">
+                {% csrf_token %}
+                <h2>Reassign Pick</h2>
+                <select name = "pick">
+                    {% for picks in picks %}
+                        <option id="pick" value="{{picks.id}}">{{picks.year}} Round: {{picks.round}}</option>
+                    {% endfor %}
+                </select>
+                <select name="team">
+                    {% for teams in teams %}
+                    <option id="team" value ="{{teams.team_id}}">{{teams.team_name}}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Re-Assign Pick">
+            </form>
+
+            <form action = "/teams/create_player/{{x}}/" method="post">
+                {% csrf_token %}
+                <h2> Create Player </h2>
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <label for="first_name">First Name:</label>
+                        <input type="text" name="first_name" id="first_name">
+
+                    </div>
+                                            <p> </p>
+                    <div class="row">
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" id="last_name" name="last_name">
+                        <label for="position">Postion:</label>
+                        <select name = "position" id="position">
+                            <option  value="QB" name="position">QB</option>
+                            <option  value="RB" name="position">RB</option>
+                            <option  value="WR" name="position">WR</option>
+                            <option  value="TE" name="position">TE</option>
+                            <option  value="K" name="position">K</option>
+                            <option  value="QB" name="position">DEF</option>
+                        </select>
+                    </div>
+                                            <p> </p>
+                    <div class="row">
+                        <input type="submit" value="Create Player">
+
+                    </div>
+                </div>
+
+
+
+
+            </form>
+        </div>
+        {% endif %}
+
+        <div class="col">
+            <h2> Roster </h2>
+            <table class="table table-hover" >
+
+                <tr>
+                    <th>Position</th>
+                    <th>Player</th>
+                    {% if request.user.is_superuser %}
+                    <th>Drop</th>
+                    {% endif %}
+
+                </tr>
+
+                {% for t in t %}
+                <tr>
+
+                    <td>{{t.position}}</td>
+                    <td>{{t.first_name}} {{t.last_name}}</td>
+                    {% if request.user.is_superuser %}
+                    <td>
+                        <button onclick="location.href='/teams/unassign_player/{{t.team_id}}/{{t.player_id}}';" type = "button">Drop</button>
+                    </td>
+                    {% endif %}
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+
+
+        <div class="col">
+            <h2> Team Picks </h2>
+            <table class="table table-hover">
+                <tr>
+                    <th>Year</th>
+                    <th>Round</th>
+                    <th>Owner</th>
+                </tr>
+
+                {% for picks in picks %}
+                <tr>
+                    <td>{{picks.year}}</td>
+                    <td>{{picks.round}}</td>
+                    <td>{{picks.owner}}</td>
+                </tr>
+
+                {% endfor %}
+            </table>
+
+            <h2> Owned Picks </h2>
+            <table class="table table-hover">
+                <tr>
+                    <th>Team</th>
+                    <th>Year</th>
+                    <th>Round</th>
+                </tr>
+
+                {% for other_picks in other_picks %}
+                <tr>
+                    <td>{{other_picks.team}}</td>
+                    <td>{{other_picks.year}}</td>
+                    <td>{{other_picks.round}}</td>
+                </tr>
+
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
